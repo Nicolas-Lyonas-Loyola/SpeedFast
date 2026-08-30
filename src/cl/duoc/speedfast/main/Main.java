@@ -54,6 +54,7 @@ public class Main {
         pedidoComida.asignarRepartidor("Luis Díaz");
         pedidoEncomienda.asignarRepartidor("Daniela Tapia");
         pedidoExpress.asignarRepartidor("Carlos Soto");
+        pedidoExpress.asignarRepartidor("Carlos Soto", "Motocicleta");
 
         System.out.println("\n=== DESPACHOS ===");
 

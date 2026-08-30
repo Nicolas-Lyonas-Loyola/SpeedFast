@@ -13,7 +13,7 @@ public class PedidoEncomienda extends Pedido
 
     @Override
     public void asignarRepartidor() {
-        System.out.println("Asignando repartidor con capacidad para transportar encomiendas.");
+        System.out.println("Validando peso y embalaje para asignar repartidor de encomienda.");
     }
 
     @Override

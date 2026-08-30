@@ -13,7 +13,7 @@ public class PedidoExpress extends Pedido
 
     @Override
     public void asignarRepartidor() {
-        System.out.println("Asignando repartidor prioritario para pedido express.");
+        System.out.println("Asignando repartidor más cercano con disponibilidad inmediata.");
     }
 
     @Override

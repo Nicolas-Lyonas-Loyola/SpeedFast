@@ -40,6 +40,13 @@ public abstract class Pedido {
         System.out.println("Repartidor asignado: " + nombre);
     }
 
+    public void asignarRepartidor(String nombre, String vehiculo) {
+        System.out.println(
+                "Repartidor asignado: " + nombre
+                        + " | Vehículo: " + vehiculo
+        );
+    }
+
     public void reservar() {
         reservado = true;
         System.out.println("Pedido #" + idPedido + " reservado correctamente.");
