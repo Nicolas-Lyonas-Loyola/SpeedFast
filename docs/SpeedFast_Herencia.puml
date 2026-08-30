@@ -1,0 +1,39 @@
+@startuml
+
+top to bottom direction
+skinparam classAttributeIconSize 0
+
+abstract class Pedido {
+    - idPedido : int
+    - direccionEntrega : String
+    - distanciaKm : double
+    - reservado : boolean
+
+    + mostrarResumen() : void
+    + asignarRepartidor() : void
+    + asignarRepartidor(nombre : String) : void
+    + asignarRepartidor(nombre : String, vehiculo : String) : void
+    + reservar() : void
+    + calcularTiempoEntrega() : int
+}
+
+class PedidoComida {
+    + asignarRepartidor() : void
+    + calcularTiempoEntrega() : int
+}
+
+class PedidoEncomienda {
+    + asignarRepartidor() : void
+    + calcularTiempoEntrega() : int
+}
+
+class PedidoExpress {
+    + asignarRepartidor() : void
+    + calcularTiempoEntrega() : int
+}
+
+Pedido <|-- PedidoComida
+Pedido <|-- PedidoEncomienda
+Pedido <|-- PedidoExpress
+
+@enduml

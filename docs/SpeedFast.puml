@@ -1,0 +1,102 @@
+@startuml
+
+top to bottom direction
+skinparam classAttributeIconSize 0
+skinparam classAttributeIconSize 0
+
+abstract class Pedido {
+    - idPedido : int
+    - direccionEntrega : String
+    - distanciaKm : double
+    - reservado : boolean
+
+    + Pedido(idPedido : int, direccionEntrega : String, distanciaKm : double)
+    + getIdPedido() : int
+    + getDireccionEntrega() : String
+    + getDistanciaKm() : double
+    + mostrarResumen() : void
+    + asignarRepartidor() : void
+    + asignarRepartidor(nombre : String) : void
+    + asignarRepartidor(nombre : String, vehiculo : String) : void
+    + reservar() : void
+    + calcularTiempoEntrega() : int
+}
+
+class PedidoComida {
+    + PedidoComida(idPedido : int, direccionEntrega : String, distanciaKm : double)
+    + asignarRepartidor() : void
+    + calcularTiempoEntrega() : int
+    + despachar() : void
+    + cancelar() : void
+    + verHistorial() : void
+}
+
+class PedidoEncomienda {
+    + PedidoEncomienda(idPedido : int, direccionEntrega : String, distanciaKm : double)
+    + asignarRepartidor() : void
+    + calcularTiempoEntrega() : int
+    + despachar() : void
+    + cancelar() : void
+    + verHistorial() : void
+}
+
+class PedidoExpress {
+    + PedidoExpress(idPedido : int, direccionEntrega : String, distanciaKm : double)
+    + asignarRepartidor() : void
+    + calcularTiempoEntrega() : int
+    + despachar() : void
+    + cancelar() : void
+    + verHistorial() : void
+}
+
+interface Despachable {
+    + despachar() : void
+}
+
+interface Cancelable {
+    + cancelar() : void
+}
+
+interface Rastreable {
+    + verHistorial() : void
+}
+
+class ControladorDeEnvios {
+    - historialEntregas : List<Rastreable>
+
+    + ControladorDeEnvios()
+    + despacharPedido(despachable : Despachable, rastreable : Rastreable) : void
+    + cancelarPedido(pedido : Cancelable) : void
+    + revisarHistorial(pedido : Rastreable) : void
+    + mostrarHistorialEntregas() : void
+}
+
+Pedido <|-- PedidoComida
+Pedido <|-- PedidoEncomienda
+Pedido <|-- PedidoExpress
+
+Despachable <|.. PedidoComida
+Cancelable <|.. PedidoComida
+Rastreable <|.. PedidoComida
+
+Despachable <|.. PedidoEncomienda
+Cancelable <|.. PedidoEncomienda
+Rastreable <|.. PedidoEncomienda
+
+Despachable <|.. PedidoExpress
+Cancelable <|.. PedidoExpress
+Rastreable <|.. PedidoExpress
+
+ControladorDeEnvios ..> Despachable
+ControladorDeEnvios ..> Cancelable
+ControladorDeEnvios ..> Rastreable
+
+ControladorDeEnvios -[hidden]-> Pedido
+Pedido -[hidden]-> PedidoComida
+PedidoComida -[hidden]-> PedidoEncomienda
+PedidoEncomienda -[hidden]-> PedidoExpress
+
+Cancelable -[hidden]-> Rastreable
+Rastreable -[hidden]-> Despachable
+
+@enduml

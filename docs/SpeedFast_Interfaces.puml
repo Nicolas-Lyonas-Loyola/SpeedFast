@@ -1,0 +1,48 @@
+@startuml
+
+left to right direction
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+interface Despachable {
+    + despachar() : void
+}
+
+interface Cancelable {
+    + cancelar() : void
+}
+
+interface Rastreable {
+    + verHistorial() : void
+}
+
+class PedidoComida
+class PedidoEncomienda
+class PedidoExpress
+
+class ControladorDeEnvios {
+    - historialEntregas : List<Rastreable>
+
+    + despacharPedido(Despachable, Rastreable) : void
+    + cancelarPedido(Cancelable) : void
+    + revisarHistorial(Rastreable) : void
+    + mostrarHistorialEntregas() : void
+}
+
+Despachable <|.. PedidoComida
+Cancelable <|.. PedidoComida
+Rastreable <|.. PedidoComida
+
+Despachable <|.. PedidoEncomienda
+Cancelable <|.. PedidoEncomienda
+Rastreable <|.. PedidoEncomienda
+
+Despachable <|.. PedidoExpress
+Cancelable <|.. PedidoExpress
+Rastreable <|.. PedidoExpress
+
+ControladorDeEnvios ..> Despachable
+ControladorDeEnvios ..> Cancelable
+ControladorDeEnvios ..> Rastreable
+
+@enduml
