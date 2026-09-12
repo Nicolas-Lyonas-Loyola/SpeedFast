@@ -40,17 +40,26 @@ public class Repartidor implements Runnable {
             try {
                 long tiempoSimulado =
                         ThreadLocalRandom.current().nextLong(500, 1501);
-
+                // Simula el tiempo de entrega.
+                // No se utiliza como mecanismo de sincronización.
                 Thread.sleep(tiempoSimulado);
 
             } catch (InterruptedException e) {
 
+                // El pedido no debe quedar perdido en EN_REPARTO.
+                // Se devuelve a la zona de carga para que pueda ser procesado nuevamente.
+                pedido.setEstado(EstadoPedido.PENDIENTE);
+                zonaDeCarga.agregarPedido(pedido);
+
+                // Se restaura la señal de interrupción del hilo.
                 Thread.currentThread().interrupt();
 
                 System.out.println(
                         "[" + hilo + " | " + nombre + "] "
                                 + "interrumpido durante la entrega del Pedido #"
                                 + pedido.getId()
+                                + ". Pedido devuelto a la zona de carga -> "
+                                + pedido.getEstado()
                 );
 
                 return;

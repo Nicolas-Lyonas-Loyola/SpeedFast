@@ -16,7 +16,8 @@ public class ZonaDeCarga {
     public synchronized void agregarPedido(Pedido pedido) {
         pedidos.add(pedido);
     }
-
+    // synchronized protege la sección crítica para impedir
+    // que dos repartidores retiren el mismo pedido.
     public synchronized Pedido retirarPedido() {
         if (pedidos.isEmpty()) {
             return null;

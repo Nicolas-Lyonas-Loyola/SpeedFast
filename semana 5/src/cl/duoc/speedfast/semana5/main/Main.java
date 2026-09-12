@@ -72,6 +72,8 @@ public class Main {
 
         executor.shutdown();
 
+        // main espera la finalización real de las tareas antes
+        // de validar el estado final de los pedidos.
         try {
 
             boolean termino =
