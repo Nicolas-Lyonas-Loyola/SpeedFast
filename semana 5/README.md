@@ -14,7 +14,7 @@ El sistema debe asegurar que:
 - cada pedido sea retirado por un solo repartidor;
 - no existan retiros duplicados;
 - los pedidos mantengan un estado coherente durante su procesamiento;
-- la aplicación espere la finalización real de las tareas antes de informar el resultado final.
+- la aplicación espera la finalización real de las tareas antes de informar el resultado final.
 
 ## Tecnologías utilizadas
 
